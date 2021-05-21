@@ -21,6 +21,7 @@ public class Tablero {
 
     //Adicione los atributos que considere necesarios para el correcto fucnioanmiento de su aplicación, si y solo si , no violen ninguna regla en POO
     public Tablero() {
+     
     }
 
     /**
