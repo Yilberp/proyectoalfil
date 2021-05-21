@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author madar
@@ -16,6 +20,15 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+//        ImageIcon imgAlfil = new ImageIcon(getClass().getResource("/imagenes/Alfil.png"));
+//        ImageIcon imgPeon = new ImageIcon(getClass().getResource("/imagenes/Peon.png"));
+//
+//        Icon fondoAlfil = new ImageIcon(imgAlfil.getImage().getScaledInstance(alfilIcon.getWidth(), alfilIcon.getHeight(), Image.SCALE_DEFAULT));
+//        alfilIcon.setIcon(fondoAlfil);
+//
+//        Icon fondoPeon = new ImageIcon(imgPeon.getImage().getScaledInstance(peonIcon.getWidth(), peonIcon.getHeight(), Image.SCALE_DEFAULT));
+//        peonIcon.setIcon(fondoAlfil);
+//        this.repaint();
     }
 
     /**
@@ -30,20 +43,20 @@ public class Principal extends javax.swing.JFrame {
         posicionAlfil = new javax.swing.JLabel();
         filaAlfil = new javax.swing.JLabel();
         columnaAlfil = new javax.swing.JLabel();
-        alfilIcon = new javax.swing.JLabel();
         txtFilaAlfil = new javax.swing.JTextField();
         txtColumnaAlfil = new javax.swing.JTextField();
         txtColumnaPeon = new javax.swing.JTextField();
         posicionPeon = new javax.swing.JLabel();
         filaPeon = new javax.swing.JLabel();
         columnaPeon = new javax.swing.JLabel();
-        peonIcon = new javax.swing.JLabel();
         txtFilaPeon = new javax.swing.JTextField();
         direccion = new javax.swing.JLabel();
         boxDireccion = new javax.swing.JComboBox<>();
         btnJugar = new javax.swing.JButton();
         btnPdf = new javax.swing.JButton();
         presentacion = new javax.swing.JLabel();
+        peonIcon = new javax.swing.JLabel();
+        alfilIcon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Juego del Alfil");
@@ -53,8 +66,6 @@ public class Principal extends javax.swing.JFrame {
         filaAlfil.setText("Fila:");
 
         columnaAlfil.setText("Columna:");
-
-        alfilIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Alfil.png"))); // NOI18N
 
         txtFilaAlfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,8 +79,6 @@ public class Principal extends javax.swing.JFrame {
 
         columnaPeon.setText("Columna:");
 
-        peonIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Peon.png"))); // NOI18N
-
         txtFilaPeon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFilaPeonActionPerformed(evt);
@@ -79,6 +88,11 @@ public class Principal extends javax.swing.JFrame {
         direccion.setText("Dirección:");
 
         boxDireccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ir hacia abajo", "Ir hacia arriba" }));
+        boxDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxDireccionActionPerformed(evt);
+            }
+        });
 
         btnJugar.setText("Jugar !!!");
 
@@ -91,93 +105,95 @@ public class Principal extends javax.swing.JFrame {
 
         presentacion.setText("Proyecto realizado por CRISTIAN CAMARGO 1151595 y YILBER PATIÑO 1151509");
 
+        peonIcon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        alfilIcon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(alfilIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(columnaAlfil)
+                    .addComponent(filaAlfil)
+                    .addComponent(posicionAlfil))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFilaAlfil)
+                    .addComponent(txtColumnaAlfil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(peonIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(posicionPeon)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnJugar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(alfilIcon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(posicionAlfil)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(columnaAlfil)
-                                            .addComponent(filaAlfil))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtFilaAlfil, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                                            .addComponent(txtColumnaAlfil))))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(peonIcon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(posicionPeon)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(columnaPeon)
-                                            .addComponent(filaPeon))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtFilaPeon)
-                                            .addComponent(txtColumnaPeon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(boxDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(direccion)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addComponent(btnPdf))))
+                            .addComponent(columnaPeon)
+                            .addComponent(filaPeon))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFilaPeon)
+                            .addComponent(txtColumnaPeon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnPdf))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boxDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(direccion))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(presentacion)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(presentacion)))
+                        .addGap(54, 54, 54)
+                        .addComponent(btnJugar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(posicionPeon)
-                            .addComponent(direccion))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(filaPeon)
-                            .addComponent(txtFilaPeon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(columnaPeon)
-                            .addComponent(txtColumnaPeon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(peonIcon)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(posicionAlfil)
-                        .addGap(23, 23, 23)
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(filaAlfil)
                             .addComponent(txtFilaAlfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(columnaAlfil)
                             .addComponent(txtColumnaAlfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(alfilIcon))
-                .addGap(43, 43, 43)
+                    .addComponent(peonIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alfilIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(posicionPeon)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(filaPeon)
+                                    .addComponent(txtFilaPeon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(direccion)
+                                .addGap(23, 23, 23)
+                                .addComponent(boxDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(columnaPeon)
+                            .addComponent(txtColumnaPeon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnJugar)
                     .addComponent(btnPdf))
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(presentacion)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(75, 75, 75))
         );
 
         pack();
@@ -192,8 +208,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFilaPeonActionPerformed
 
     private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
-        
+
     }//GEN-LAST:event_btnPdfActionPerformed
+
+    private void boxDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxDireccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxDireccionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,8 +253,8 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel alfilIcon;
     public javax.swing.JComboBox<String> boxDireccion;
-    private javax.swing.JButton btnJugar;
-    private javax.swing.JButton btnPdf;
+    public javax.swing.JButton btnJugar;
+    public javax.swing.JButton btnPdf;
     private javax.swing.JLabel columnaAlfil;
     private javax.swing.JLabel columnaPeon;
     private javax.swing.JLabel direccion;

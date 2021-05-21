@@ -21,6 +21,8 @@ public class App {
     public static void main(String[] args) {
         Principal vista = new Principal();
         Controlador controlador = new Controlador(vista);
+        controlador.iniciar();
+        vista.setVisible(true);
     }
 
 }
