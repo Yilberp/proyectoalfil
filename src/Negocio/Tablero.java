@@ -104,24 +104,46 @@ public class Tablero {
         this.dirPeon = dirPeon;
     }
 
-    public String jugar() {
-
-        return null;
+    public String jugar(String camino) {
+        if ((i_alfil == 7 && dirPeon) || (i_alfil == 0 && !dirPeon)) {
+            return camino;
+        }
+        int dir = (dirPeon ? 1 : -1);
+        if (!seEncuentran(i_peon + dir, j_peon, i_alfil, j_alfil)) {
+            camino = camino + " P(" + (i_peon + dir) + "," + j_peon;
+            i_peon += dir;
+        } else {
+            if (!seEncuentran(i_peon + dir, j_peon, i_alfil + 1, j_alfil + 1)) {
+                i_alfil++;
+                j_alfil++;
+            } else if (!seEncuentran(i_peon + dir, j_peon, i_alfil - 1, j_alfil - 1)) {
+                i_alfil--;
+                j_alfil--;
+            } else if (!seEncuentran(i_peon + dir, j_peon, i_alfil + 1, j_alfil - 1)) {
+                i_alfil++;
+                j_alfil--;
+            } else if (!seEncuentran(i_peon + dir, j_peon, i_alfil - 1, j_alfil + 1)) {
+                i_alfil--;
+                j_alfil++;
+            }
+            camino = camino + " A(" + (i_alfil) + "," + j_alfil;
+        }
+        return jugar(camino);
     }
 
-    public String mostrar() {
-        String msg = "";
-        for (int i = 0; i < this.myTablero.length; i++) {
-            for (int j = 0; j < this.myTablero[i].length; j++) {
-                if (this.myTablero[i][j] != null) {
-                    msg += this.myTablero[i][j].getNombreFicha() + "\t";
-                } else {
-                    msg += this.myTablero[i][j] + "\t";
-                }
-            }
-            msg += "\n";
+    public boolean seEncuentran(int i_p, int j_p, int i_a, int j_a) {
+        if (i_a < 0 || i_a > 7 || j_a < 0 || j_a > 7) {
+            return false;
         }
-        return msg;
+        if (i_p == i_a && j_p == j_a) {
+            return true;
+        }
+        boolean ans = false;
+        ans = ans || seEncuentran(i_p, j_p, i_a - 1, j_a + 1);
+        ans = ans || seEncuentran(i_p, j_p, i_a + 1, j_a - 1);
+        ans = ans || seEncuentran(i_p, j_p, i_a + 1, j_a + 1);
+        ans = ans || seEncuentran(i_p, j_p, i_a - 1, j_a - 1);
+        return ans;
     }
 
 }

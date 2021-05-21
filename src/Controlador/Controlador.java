@@ -21,31 +21,31 @@ import javax.swing.JOptionPane;
  * @author Yilber
  */
 public class Controlador implements ActionListener {
-
+    
     private Principal vista;
     private Tablero tablero;
     private GenerarTextPDF crearPdf;
     private String historialJugadas;
-
+    
     public Controlador(Principal vista) {
         this.vista = vista;
         this.vista.btnJugar.addActionListener(this);
         this.vista.btnPdf.addActionListener(this);
     }
-
+    
     public String getHistorialJugadas() {
         return historialJugadas;
     }
-
+    
     public void setHistorialJugadas(String historialJugadas) {
         this.historialJugadas = historialJugadas;
     }
-
+    
     public void iniciar() {
         vista.setTitle("Proyecto Alfil");
         vista.setLocationRelativeTo(null);
     }
-
+    
     public String validarCampos(String filaAlfil, String columnaAlfil, String filaPeon, String columnaPeon) {
         if (filaAlfil.isBlank() || columnaAlfil.isBlank() || filaPeon.isBlank() || columnaPeon.isBlank()) {
             return "Rellene los campos";
@@ -75,14 +75,14 @@ public class Controlador implements ActionListener {
         }
         return "aprobado";
     }
-
+    
     public void limpiar() {
         vista.txtFilaAlfil.setText("");
         vista.txtColumnaAlfil.setText("");
         vista.txtFilaPeon.setText("");
         vista.txtColumnaPeon.setText("");
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(vista.btnJugar)) {
@@ -98,13 +98,13 @@ public class Controlador implements ActionListener {
                 int i_peon = Integer.parseInt(filaPeon) - 1;
                 int j_peon = Integer.parseInt(columnaPeon) - 1;
                 this.tablero = new Tablero(i_alfil, j_alfil, i_peon, j_peon, dirPeon);
-                this.setHistorialJugadas(this.tablero.mostrar());
+                this.setHistorialJugadas(this.tablero.jugar(""));
                 JOptionPane.showMessageDialog(null, "EL JUEGO YA FUE PROCESADO");
             } else {
                 JOptionPane.showMessageDialog(null, validacion, "Error!", JOptionPane.ERROR_MESSAGE);
             }
         }
-
+        
         if (e.getSource().equals(vista.btnPdf)) {
             if (this.getHistorialJugadas() != null) {
                 try {
@@ -120,7 +120,7 @@ public class Controlador implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(null, "DEBE INICIAR EL JUEGO PRIMERO", "Error!", JOptionPane.ERROR_MESSAGE);
             }
-
+            
         }
     }
 }
