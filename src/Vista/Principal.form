@@ -237,6 +237,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="peonIcon">
       <Properties>
+        <Property name="text" type="java.lang.String" value="      PEON"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
             <EtchetBorder/>
@@ -246,6 +247,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="alfilIcon">
       <Properties>
+        <Property name="text" type="java.lang.String" value="       ALFIL"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
             <EtchetBorder/>

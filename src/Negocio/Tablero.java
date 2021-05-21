@@ -21,7 +21,7 @@ public class Tablero {
 
     //Adicione los atributos que considere necesarios para el correcto fucnioanmiento de su aplicación, si y solo si , no violen ninguna regla en POO
     public Tablero() {
-     
+
     }
 
     /**
@@ -124,31 +124,4 @@ public class Tablero {
         return msg;
     }
 
-    public void jugarTest() {
-        System.out.println(mostrar());
-        System.out.println("alfil-" + this.getI_alfil() + " " + this.getJ_alfil() + " peon-" + this.getI_peon() + " " + this.getJ_peon());
-        if ((this.getJ_alfil() + 1 == this.getI_peon()) && (this.getI_alfil() == this.getJ_peon())) {
-            if (this.getI_alfil() < this.myTablero.length) {
-                this.setJ_alfil(this.getJ_alfil() + 1);
-                this.setI_alfil(this.getI_alfil() + 1);
-            } else {
-                this.setJ_alfil(this.getJ_alfil() - 1);
-                this.setI_alfil(this.getI_alfil() - 1);
-            }
-            this.myTablero[this.getI_alfil()][this.getJ_alfil()] = this.getAlfil();
-            jugarTest();
-        } else {
-            if (this.isDirPeon() && this.getI_peon() < this.myTablero.length - 1) {
-                this.setI_peon(this.getI_peon() + 1);
-                this.myTablero[this.getI_peon()][this.getJ_peon()] = this.getPeon();
-                jugarTest();
-            }
-
-            if (!this.isDirPeon() && this.getI_peon() > 0) {
-                this.setI_peon(this.getI_peon() - 1);
-                this.myTablero[this.getI_peon()][this.getJ_peon()] = this.getPeon();
-                jugarTest();
-            }
-        }
-    }
 }

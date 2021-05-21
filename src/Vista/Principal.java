@@ -105,8 +105,10 @@ public class Principal extends javax.swing.JFrame {
 
         presentacion.setText("Proyecto realizado por CRISTIAN CAMARGO 1151595 y YILBER PATIÑO 1151509");
 
+        peonIcon.setText("      PEON");
         peonIcon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        alfilIcon.setText("       ALFIL");
         alfilIcon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

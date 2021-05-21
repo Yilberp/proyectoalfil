@@ -5,10 +5,15 @@
  */
 package Controlador;
 
+import Negocio.GenerarTextPDF;
 import Negocio.Tablero;
 import Vista.Principal;
+import com.itextpdf.text.DocumentException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +24,7 @@ public class Controlador implements ActionListener {
 
     private Principal vista;
     private Tablero tablero;
+    private GenerarTextPDF crearPdf;
     private String historialJugadas;
 
     public Controlador(Principal vista) {
@@ -92,11 +98,29 @@ public class Controlador implements ActionListener {
                 int i_peon = Integer.parseInt(filaPeon) - 1;
                 int j_peon = Integer.parseInt(columnaPeon) - 1;
                 this.tablero = new Tablero(i_alfil, j_alfil, i_peon, j_peon, dirPeon);
-                System.out.println(this.tablero.mostrar());
+                this.setHistorialJugadas(this.tablero.mostrar());
                 JOptionPane.showMessageDialog(null, "EL JUEGO YA FUE PROCESADO");
             } else {
                 JOptionPane.showMessageDialog(null, validacion, "Error!", JOptionPane.ERROR_MESSAGE);
             }
+        }
+
+        if (e.getSource().equals(vista.btnPdf)) {
+            if (this.getHistorialJugadas() != null) {
+                try {
+                    this.crearPdf = new GenerarTextPDF(this.getHistorialJugadas());
+                    JOptionPane.showMessageDialog(null, "El pdf historialJugadas.pdf fue creado correctamente en la raiz del proyecto");
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Error al crear el pdf", "Error!", JOptionPane.ERROR_MESSAGE);
+                } catch (DocumentException ex) {
+                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Error al crear el pdf", "Error!", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "DEBE INICIAR EL JUEGO PRIMERO", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
     }
 }
