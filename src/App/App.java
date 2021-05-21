@@ -24,5 +24,5 @@ public class App {
         controlador.iniciar();
         vista.setVisible(true);
     }
-
+    
 }
